@@ -1,5 +1,5 @@
 $topic = 'flipperdump'
-$message = 'This is your notification message.'
+$message = 'This was updated in GitHub.'
 $url = 'https://ntfy.sh/' + $topic
 try {
     Invoke-RestMethod -Method Post -Uri $url -Body $message
