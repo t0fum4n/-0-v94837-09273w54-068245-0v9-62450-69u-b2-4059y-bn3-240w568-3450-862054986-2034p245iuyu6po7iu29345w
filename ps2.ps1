@@ -1,5 +1,5 @@
 $topic = 'flipperdump'
-$message = 'This was updated in GitHub.'
+$message = 'This was updated in GitHub again.'
 $url = 'https://ntfy.sh/' + $topic
 try {
     Invoke-RestMethod -Method Post -Uri $url -Body $message
